@@ -1,8 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache"; 
 import { z } from "zod";
 
 export type UpdateMenuFormState = {
@@ -21,11 +20,6 @@ const formSchema = z.object({
     description: z.string().min(1, { message: "Description is required" }),
     category: z.string().min(1, { message: "Category is required" }),
     price: z.coerce.number().min(0.01, { message: "Price must be at least $0.01" }),
-    image: z
-        .string()
-        .url({ message: "Image must be a valid URL" })
-        .optional()
-        .or(z.literal("")), // allow empty string
 });
 
 export const updateMenuAction = async (
@@ -37,8 +31,7 @@ export const updateMenuAction = async (
         name: formData.get("name")?.toString() || "",
         description: formData.get("description")?.toString() || "",
         category: formData.get("category")?.toString() || "",
-        price: formData.get("price") || "",
-        image: formData.get("imageUrl")?.toString() || "",
+        price: formData.get("price") || "", 
     };
 
     const result = formSchema.safeParse(values);
@@ -49,7 +42,7 @@ export const updateMenuAction = async (
         };
     }
 
-    const { name, description, category, price, image } = result.data;
+    const { name, description, category, price } = result.data;
 
     try {
         await prisma.menuItem.update({
@@ -58,8 +51,7 @@ export const updateMenuAction = async (
                 name,
                 description,
                 category,
-                price,
-                image
+                price, 
             },
         });
 
