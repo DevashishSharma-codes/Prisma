@@ -1,103 +1,214 @@
-import Image from "next/image";
+ 
+import { Button } from "@/components/ui/button"
+import Image from "next/image"
+import Link from "next/link"
+import { ChevronRight, Clock, Utensils, Star, Leaf } from "lucide-react"
+import { Footer } from "@/components/footer"
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="flex flex-col min-h-screen">
+      
+      <main className="flex-1">
+        {/* Hero Section */}
+        <section className="relative h-[80vh] max-h-[800px]">
+          <div className="absolute inset-0 bg-black/50 z-10" />
+          <Image 
+            src="/hero-bg.jpg" 
+            alt="Restaurant interior"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="container relative z-20 h-full flex flex-col justify-center items-start text-white mx-4">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+              Authentic Flavors, <br />
+              <span className="text-green-400">Exceptional</span> Dining
+            </h1>
+            <p className="text-xl mb-8 max-w-2xl">
+              Experience the finest culinary creations made with locally-sourced ingredients and passion.
+            </p>
+            <div className="flex gap-4">
+              <Button asChild size="lg">
+                <Link href="/menu">
+                  View Menu <ChevronRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button variant="outline" size="lg" className="text-black border-white hover:bg-white/10 hover:text-white">
+                <Link href="/reservations">
+                  Make Reservation
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+        {/* Features Section */}
+        <section className="container mx-auto py-16 bg-secondary/10">
+          <div className="container">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="flex flex-col items-center text-center p-6 rounded-lg bg-background">
+                <Clock className="h-10 w-10 mb-4 text-primary" />
+                <h3 className="text-xl font-bold mb-2">Open Daily</h3>
+                <p className="text-muted-foreground">
+                  Monday - Sunday: 11am - 10pm
+                </p>
+              </div>
+              <div className="flex flex-col items-center text-center p-6 rounded-lg bg-background">
+                <Utensils className="h-10 w-10 mb-4 text-primary" />
+                <h3 className="text-xl font-bold mb-2">Diverse Menu</h3>
+                <p className="text-muted-foreground">
+                  50+ dishes crafted by our master chefs
+                </p>
+              </div>
+              <div className="flex flex-col items-center text-center p-6 rounded-lg bg-background">
+                <Leaf className="h-10 w-10 mb-4 text-primary" />
+                <h3 className="text-xl font-bold mb-2">Fresh Ingredients</h3>
+                <p className="text-muted-foreground">
+                  Locally-sourced, organic produce
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Menu Preview Section */}
+        <section className="container mx-auto py-16">
+          <div className="container">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Our Signature Dishes</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                A selection of our most popular dishes loved by our customers
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  name: "Truffle Pasta",
+                  description: "Handmade pasta with black truffle cream sauce",
+                  price: 18.99,
+                  image: "/truffle-pasta.webp",
+                  rating: 4.9
+                },
+                {
+                  name: "Grilled Salmon",
+                  description: "Fresh salmon with lemon butter sauce",
+                  price: 22.50,
+                  image: "/grilled-salmon.jpg",
+                  rating: 4.8
+                },
+                {
+                  name: "Chocolate Soufflé",
+                  description: "Warm chocolate dessert with vanilla ice cream",
+                  price: 9.99,
+                  image: "/chocolate-souffle.jpg",
+                  rating: 5.0
+                }
+              ].map((item, index) => (
+                <div key={index} className="group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="relative h-64">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform"
+                    />
+                  </div>
+                  <div className="p-6 bg-background">
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="text-xl font-bold">{item.name}</h3>
+                      <span className="font-bold text-primary">${item.price.toFixed(2)}</span>
+                    </div>
+                    <p className="text-muted-foreground mb-4">{item.description}</p>
+                    <div className="flex items-center">
+                      <Star className="h-4 w-4 fill-yellow-400 text-yellow-400 mr-1" />
+                      <span className="text-sm">{item.rating}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <Button asChild size="lg">
+                <Link href="/menu">
+                  View Full Menu <ChevronRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials Section */}
+        <section className="container mx-auto py-16 bg-secondary/10">
+          <div className="container">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">What Our Guests Say</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Don't just take our word for it - hear from our satisfied customers
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  name: "Sarah Johnson",
+                  comment: "The best dining experience I've had this year! The truffle pasta is to die for.",
+                  rating: 5
+                },
+                {
+                  name: "Michael Chen",
+                  comment: "Consistently excellent food and service. Our go-to spot for special occasions.",
+                  rating: 5
+                },
+                {
+                  name: "Emily Rodriguez",
+                  comment: "The ambiance is perfect and every dish we tried was flavorful and beautifully presented.",
+                  rating: 4
+                }
+              ].map((testimonial, index) => (
+                <div key={index} className="bg-background p-6 rounded-lg shadow-sm">
+                  <div className="flex mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star 
+                        key={i} 
+                        className={`h-5 w-5 ${i < testimonial.rating ? 'fill-yellow-400 text-yellow-400' : 'text-muted-foreground'}`} 
+                      />
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground mb-4 italic">"{testimonial.comment}"</p>
+                  <p className="font-medium">{testimonial.name}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-16 bg-primary text-primary-foreground">
+          <div className="container mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-4">Ready to Experience Our Cuisine?</h2>
+            <p className="text-lg mb-8 max-w-2xl mx-auto">
+              Book your table now or order online for pickup
+            </p>
+            <div className="flex gap-4 justify-center">
+              <Button asChild variant="secondary" size="lg">
+                <Link href="/reservations">
+                  Reserve a Table
+                </Link>
+              </Button>
+              <Button asChild variant="secondary" size="lg">
+                <Link href="/order">
+                  Order Online
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+      <Footer/>
     </div>
-  );
+  )
 }
