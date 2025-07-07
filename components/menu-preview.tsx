@@ -18,7 +18,7 @@ export default async function MenuPreview() {
       price: true,
     },
   });
-
+  
   return (
     <section className="container mx-auto py-16">
       <div className="text-center mb-12">

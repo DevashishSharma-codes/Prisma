@@ -30,8 +30,7 @@ export default async function Home() {
             src="/hero-bg.jpg" 
             alt="Restaurant interior"
             fill
-            className="object-cover"
-            priority
+            className="object-cover" 
           />
           <div className="container relative z-20 h-full flex flex-col justify-center items-start text-white mx-4">
             <h1 className="text-4xl md:text-6xl font-bold mb-4">

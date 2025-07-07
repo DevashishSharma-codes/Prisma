@@ -19,7 +19,7 @@ export function MenuItem({ item }: { item: Item }) {
   return (
     <Card className="overflow-hidden transition-all hover:shadow-lg">
       <CardHeader className="p-0 pb-4">
-        <ImageKitProvider urlEndpoint="https://ik.imagekit.io/your_imagekit_id">
+        <ImageKitProvider urlEndpoint="https://ik.imagekit.io/vwwosltps">
           <Image
             src={item.image}
             width={400}

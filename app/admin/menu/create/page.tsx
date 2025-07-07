@@ -15,6 +15,7 @@ import {
 import Upload from "@/components/upload";
 import { useActionState, useState } from "react";
 import { createMenuAction } from "@/action/create-menu";
+import Link from "next/link";
 
 const categories = ["Pizza", "Pasta", "Salad", "Dessert", "Drink"];
 
@@ -33,7 +34,12 @@ export default function AdminMenuPage() {
     <div className="min-h-screen flex items-start justify-center py-12 px-4 sm:px-6 lg:px-8 bg-white">
       <Card className="w-full max-w-xl">
         <CardHeader>
-          <CardTitle className="text-center">Add New Menu Item</CardTitle>
+          <CardTitle className="flex justify-between items-center">
+            <h1>Add New Menu Item</h1>
+            <Link href={"/admin/menu"}>
+              <Button variant={"link"}>All menu list</Button>
+            </Link>
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <form action={handleAction} className="space-y-4">
